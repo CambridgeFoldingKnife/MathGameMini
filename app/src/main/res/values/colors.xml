@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="launch_button_text">#ff36cd68</color>
+    <color name="ripple_dark">#30000000</color>
+
+    <color name="home_bg">#ffeff2f8</color>
+    <color name="text_dark">#ffA9B2BB</color>
+    <color name="text_gray">#ff6b7280</color>
+    <color name="huangguan_gold">#fff5a623</color>
+    <color name="heart_red">#fffb4628</color>
+    <color name="divider">#ffe9ecf1</color>
+
+    <color name="level_green">#FF3AC975</color>
+    <color name="level_gray">#FFDDE1E6</color>
+
+
+</resources>

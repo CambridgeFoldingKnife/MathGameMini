@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="@dimen/dp_8"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tv_level_num"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+        android:background="@drawable/level_bg_open"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_32"
+        android:fontFamily="@font/font_num"
+        tools:text="1"/>
+
+    <TextView
+        android:id="@+id/tv_level_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:textColor="@color/text_dark"
+        android:textSize="@dimen/sp_14"
+        tools:text="加法 I"/>
+
+
+
+
+
+
+
+
+
+
+</android.widget.LinearLayout>

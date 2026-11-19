@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_bg"
+    android:orientation="vertical"
+    android:clipChildren="false"
+    tools:context=".MainActivity">
+<!--    跟布局加上一个白色占位-->
+    <View
+        android:id="@+id/top_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"/>
+
+    <!-- 顶部栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_64"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/dp_16"
+        android:paddingEnd="@dimen/dp_16">
+
+        <TextView
+            android:id="@+id/tv_game_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/title_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:contentDescription="@null"
+            app:srcCompat="@drawable/vector_ic_crown" />
+
+        <TextView
+            android:id="@+id/tv_crown_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:text="@string/huagguan_start"
+            android:textColor="@color/huangguan_gold"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_marginStart="@dimen/dp_16"
+            android:contentDescription="@null"
+            app:srcCompat="@drawable/vector_ic_heart_available" />
+
+        <TextView
+            android:id="@+id/tv_heart_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:text="@string/heart_start"
+            android:textColor="@color/heart_red"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+<!--灰色分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- 课程标题 -->
+    <TextView
+        android:id="@+id/tv_course_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_24"
+        android:text="@string/class_title1"
+        android:textColor="@color/text_dark"
+        android:textSize="@dimen/sp_20"
+        android:textStyle="bold" />
+
+
+    <!--中间关卡部分-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_64"
+        android:clipChildren="false">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_level_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_level_card"
+
+            android:elevation="@dimen/dp_2"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_16"
+            android:paddingTop="54dp"
+            android:paddingBottom="@dimen/dp_16"
+            tools:listitem="@layout/item_level"
+            tools:itemCount="5"/>
+
+        <!--   小旗子-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="@dimen/dp_96"
+            android:layout_height="@dimen/dp_96"
+            android:layout_gravity="top|center_horizontal"
+            android:elevation="@dimen/dp_4"
+            android:translationY="-48dp">
+
+            <ImageView
+                android:id="@+id/iv_flag"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_badge_ring"
+
+                android:padding="@dimen/dp_8"
+                android:contentDescription="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat = "@drawable/vector_ic_math_set_on_1" />
+
+
+            <TextView
+                android:id="@+id/tv_set_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_num"
+                android:includeFontPadding="false"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_flag"
+                app:layout_constraintEnd_toEndOf="@+id/iv_flag"
+                app:layout_constraintHorizontal_bias="0.69"
+                app:layout_constraintStart_toStartOf="@+id/iv_flag"
+                app:layout_constraintTop_toTopOf="@+id/iv_flag"
+                app:layout_constraintVertical_bias="0.1" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </FrameLayout>
+
+
+
+
+
+    <!-- 底部 按键-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_68"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/iv_home"
+                android:layout_width="@dimen/dp_36"
+                android:layout_height="@dimen/dp_36"
+                android:layout_gravity="center"
+                android:contentDescription="@string/tab_home"
+                app:srcCompat ="@drawable/vector_ic_tab_home_open"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/achieve"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/iv_achieve"
+                android:layout_width="@dimen/dp_36"
+                android:layout_height="@dimen/dp_36"
+                android:layout_gravity="center"
+                android:contentDescription="@string/tab_achieve"
+                app:srcCompat = "@drawable/vector_ic_tab_target_off"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/setting"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="@dimen/dp_36"
+                android:layout_height="@dimen/dp_36"
+                android:layout_gravity="center"
+                android:contentDescription="@string/tab_setting"
+                app:srcCompat = "@drawable/vector_ic_tab_setting_off"/>
+        </FrameLayout>
+
+   </LinearLayout>
+
+    <View
+        android:id="@+id/bottom_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"/>
+
+</LinearLayout>

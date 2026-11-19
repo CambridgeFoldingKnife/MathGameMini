@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/ripple_dark">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/dp_12"/>
+            <solid android:color="@color/white"/>
+        </shape>
+    </item>
+</ripple>
+
+<!--ripple：点击水波纹，按下有反馈
+item：水波纹盖在哪个背景上
+shape：矩形背景
+corners：12dp 圆角
+solid：白色填充-->

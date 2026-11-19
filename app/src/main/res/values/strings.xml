@@ -1,0 +1,28 @@
+<resources>
+    <!--    <string name="app_name">MathGameMini</string>-->
+    <string name="app_name">权谋烧脑</string>
+    <string name="launch_slogan">免费学数学，永久免费</string>
+    <string name="launch_start">开始</string>
+     <string name="title_name">数字游戏</string>
+
+    <string name="heart_start">5</string>
+    <string name="huagguan_start">0</string>
+    <string name="class_title1">5以内加法</string>
+    <string name="tab_class">课程</string>
+    <string name="tab_achieve">成就</string>
+    <string name="tab_setting">设置</string>
+
+    <string name="tab_home">已经是课程页</string>
+    <string name="tab_achieve_todo">成就页下一版再做</string>
+    <string name="tab_setting_todo">设置页下一版再做</string>
+
+
+<!--    关卡名字-->
+    <string name="level_add_1">加法 I</string>
+    <string name="level_add_2">加法 II</string>
+    <string name="level_add_3">加法 III</string>
+    <string name="level_equal_5_1">等于五 I</string>
+    <string name="level_equal_5_2">等于五 II</string>
+    <string name="level_locked_tip">先完成上一关</string>
+    <string name="level_open_tip">进入第 %1$d 关</string>
+</resources>
