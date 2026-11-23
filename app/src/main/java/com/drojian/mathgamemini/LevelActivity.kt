@@ -1,11 +1,13 @@
 package com.drojian.mathgamemini
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import kotlin.random.Random
 
     const val applesMaxNum = 3 //全局常量最多一行 3 个苹果
@@ -32,8 +34,8 @@ class LevelActivity : BaseActivity (){
     private var rightValue = 0
     private var correctAnswer = 0 //当前关卡的正确答案
     private var heartCount = 5//剩余红心
-    private var worryTimes = 0//失败过几次
-    private var showingCorrec = false//是否已经显示过正确答案 标记位
+    private var wrongTimes = 0//失败过几次
+    private var showingCorrect = false//是否已经显示过正确答案 标记位
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,31 +107,16 @@ class LevelActivity : BaseActivity (){
 
         //检查按钮
         checkButton.setOnClickListener {
-            if (answer.isEmpty()) {
+            if (showingCorrect){// 正确答案弹窗正在显示 键盘检查按钮不负责继续
+                Toast.makeText(this, "请点击弹窗里的继续", Toast.LENGTH_SHORT).show()
+            }else if (answer.isEmpty()){
                 Toast.makeText(this, "请输入您的答案", Toast.LENGTH_SHORT).show()
-            } else {
+            }else{
                 val userAnswer = answer.toInt()
-                if (userAnswer == correctAnswer) {//做对了
-                    if (cunrrentQusetions < totalQuestions) {//当前不是最后一关
-                        cunrrentQusetions += 1
-                        Toast.makeText(this, "Good！", Toast.LENGTH_SHORT).show()
-                        newQuestions()
-                    } else {//是最后一关
-                        Toast.makeText(this, "本关完成", Toast.LENGTH_SHORT).show()
-                    }
-                }else{//做错了 扣一个心心
-                    if (heartCount > 0){
-                        heartCount-=1
-                        heartText.text =getString(R.string.heart_format,heartCount)
-                        if (heartCount==0){
-                            Toast.makeText(this,"已经没有爱心了", Toast.LENGTH_SHORT).show()
-                        }
-                        Toast.makeText(this,"答错了，加油哦", Toast.LENGTH_SHORT).show()
-                        answer = ""
-                        updateAnswerView()
-                    }else{
-                        Toast.makeText(this,"已经没有爱心了", Toast.LENGTH_SHORT).show()
-                    }
+                if (userAnswer==correctAnswer){ //用户答案正确
+                    goNextQuestion() //是否能走到下一题，需要配合检查爱心数量。
+                }else{ //用户答案错误
+                    handleWrongAnswer() //判断第几次错，逻辑不一样
                 }
             }
         }
@@ -142,15 +129,22 @@ class LevelActivity : BaseActivity (){
 /*
 * 用来生成最新的题目*/
     private fun newQuestions() {
-   leftValue=  Random.nextInt(0,maxNumber+1)
-   rightValue =  Random.nextInt(0,maxNumber+1)
+    leftValue=  Random.nextInt(0,maxNumber+1)
+    rightValue =  Random.nextInt(0,maxNumber+1)
     correctAnswer = leftValue+rightValue
     leftNumber.text = leftValue.toString()
     rightNumber.text = rightValue.toString()
-
+    //展示苹果
     showApples(leftValue,rightValue)
     answer = ""
-    updateAnswerView()
+    updateAnswerView()  //更新键盘状态
+//重置 错误状态 和 显示正确答案弹窗
+    wrongTimes = 0
+    showingCorrect =false
+    progressText.text = getString(
+        R.string.level_progress,
+        cunrrentQusetions,
+        totalQuestions  )
 
 
 
@@ -176,18 +170,101 @@ class LevelActivity : BaseActivity (){
         maxAnswerLength = maxAnswer.toString().length
     }
 
+    //错误判断:第一次错或者第二次错
+    private fun handleWrongAnswer(){
+        if(wrongTimes==0){//第一次错
+            wrongTimes=1
+            if (heartCount >0){
+                heartCount -=1
+                heartText.text = getString(R.string.heart_format,heartCount)
+            }
+            Toast.makeText(this,"答错了，请再试一次", Toast.LENGTH_SHORT).show()
+        }else{//第二次错
+            wrongTimes =2
+            showingCorrect =true
+            //弹正确答案
+            showCorrectAnswerDialog()
+        }
+    }
+
+/*展示正确答案底部弹窗
+* */
+    private fun showCorrectAnswerDialog() {
+        val alertDialog = AlertDialog.Builder(this)
+            .setTitle("正确答案")
+            .setMessage(correctAnswer.toString())
+            .setCancelable(false)
+            .setPositiveButton("继续") { dialog, which ->
+                dialog.dismiss()//先关闭弹窗
+                goNextQuestion()//再进入下一题
+            }
+            .create()
+
+        alertDialog.show()
+    }
+/*进入下一题
+* */
+    private fun goNextQuestion() {
+        if (cunrrentQusetions>=totalQuestions){
+            //showLevelCompleteDialog() // 结果页下一步接 弹窗占位
+            val intent = Intent(this, ResultActivity::class.java) // 创建跳转
+            intent.putExtra("level_id", levelId) // 把当前关卡传过去
+            startActivity(intent) // 打开结果页
+            finish() // 关闭答题页
+            return // 结束当前方法
+        }
+       if (heartCount <= 0){
+           showNoHeartDialog()
+           return
+       }
+    cunrrentQusetions+=1
+    newQuestions()
+    }
+
+    /*展示没有红心了的弹窗
+ * */
+    private fun showNoHeartDialog() {
+        val alertDialog = AlertDialog.Builder(this)
+            .setTitle("你没有爱心了")
+            .setMessage("红心已经用完了")
+            .setCancelable(false)
+            .setPositiveButton("返回首页") { dialog, which ->
+                finish()
+
+            }
+            .create()
+
+        alertDialog.show()
+    }
+
+    // 本关完成临时弹窗
+    private fun showLevelCompleteDialog() {
+        val alertDialog = AlertDialog.Builder(this) // 创建弹窗
+            .setTitle("本关完成") // 标题
+            .setMessage("点击继续返回首页") // 内容
+            .setCancelable(false) // 不能点外面关闭
+            .setPositiveButton("继续") { dialog, which -> // 继续按钮
+                finish() // 先关闭答题页
+            }
+            .create() // 创建弹窗对象
+
+        alertDialog.show() // 显示弹窗
+    }
+
+
 
     //绑定数字--拼到答案后面
     private fun bindNumber(button: TextView,number: String){
         button.setOnClickListener {
-            if(answer.length< maxAnswerLength){
+            if(showingCorrect){//已经是第二次出现错误了
+                Toast.makeText(this,"请点击弹窗里的继续", Toast.LENGTH_SHORT).show()
+            }else if(answer.length < maxAnswerLength){
                 //没到打最大位数，按的数字拼接在后面
                 answer = answer + number
                 updateAnswerView()
-            } else{
+            }else{
                 Toast.makeText(this,"最多输入：${maxAnswerLength}位数字", Toast.LENGTH_SHORT).show()
             }
-
         }
 
     }

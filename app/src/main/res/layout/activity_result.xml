@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+<!--    顶部占位符-->
+<View
+    android:id="@+id/top_space"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="@color/white"/>
+<!--    中间部分-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/dp_96"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+<!--        中间大王冠 布灵布灵-->
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lav_crown"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:contentDescription="@null"
+            app:lottie_fileName="lottie_premium.json"
+            app:lottie_autoPlay="true"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+           android:id="@+id/tv_over_title"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textStyle="bold"
+           android:textColor="@color/black"
+           android:text="完成"
+           android:textSize="@dimen/sp_32"
+           android:fontFamily="@font/font_num"/>
+
+        <TextView
+            android:id="@+id/tv_jiayou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_16"
+            android:text="继续加油 ！你每天都在进步 ！"
+            android:textStyle="bold"
+            android:textColor="#ff86909A"/>
+
+        <!-- 把按钮推到下方 -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+<!--        下一关按钮 和完成按钮-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_24"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btn_next_level"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/dp_24"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:background="@drawable/bg_next_level"
+                android:text="下一个游戏"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_24"
+                android:fontFamily="@font/font_num"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/btn_ok"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:background="@drawable/bg_key_ok"
+                android:text="完成"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_24"
+                android:textStyle="bold"
+                android:fontFamily="@font/font_num"
+                android:gravity="center"/>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <!-- 底部占位 -->
+    <View
+        android:id="@+id/bottom_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white" />
+
+</LinearLayout>
