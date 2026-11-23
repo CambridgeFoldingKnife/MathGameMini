@@ -15,5 +15,6 @@
     <color name="level_green">#FF3AC975</color>
     <color name="level_gray">#FFDDE1E6</color>
 
+    <color name="answer_blue">#ff0961FF</color>
 
 </resources>

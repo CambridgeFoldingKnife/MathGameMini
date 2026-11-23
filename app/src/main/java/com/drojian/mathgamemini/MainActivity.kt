@@ -1,6 +1,7 @@
 package com.drojian.mathgamemini
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
@@ -80,11 +81,10 @@ class MainActivity : BaseActivity(), LevelAdapter.OnLevelClick {
             Toast.makeText(this,R.string.level_locked_tip, Toast.LENGTH_SHORT).show()
             return
         }
-        Toast.makeText(
-            this,
-            getString(R.string.level_open_tip,level.id),
-            Toast.LENGTH_SHORT
-        ).show()
+        //如果解锁之后跳转关卡页
+        val intent = Intent(this, LevelActivity::class.java)
+        intent.putExtra("level_id", level.id)
+        startActivity(intent)
 
     }
 

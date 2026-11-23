@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="KeyButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">6dp</item>
+        <item name="android:background">@drawable/bg_key_button</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/sp_32</item>
+        <item name="android:clickable">true</item>
+        <item name="android:fontFamily">@font/font_num</item>
+        <item name="android:textStyle">bold</item>
+
+        
+    </style>
+
+
+
+</resources>
