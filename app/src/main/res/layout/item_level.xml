@@ -7,8 +7,15 @@
     android:orientation="vertical"
     android:clickable="true"
     android:focusable="true"
+    android:clipChildren="false"
     android:padding="@dimen/dp_8"
     android:gravity="center">
+
+    <FrameLayout
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_96"
+        android:layout_gravity="center"
+        android:clipChildren="false">
 
     <TextView
         android:id="@+id/tv_level_num"
@@ -16,11 +23,43 @@
         android:layout_height="@dimen/dp_80"
         android:background="@drawable/level_bg_open"
         android:gravity="center"
-        android:layout_gravity="center"
+        android:layout_gravity="bottom|center_horizontal"
         android:textColor="@color/white"
         android:textSize="@dimen/sp_32"
         android:fontFamily="@font/font_num"
         tools:text="1"/>
+
+      <!--通关后的皇冠图案-->
+        <ImageView
+            android:id="@+id/iv_level_crown"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_30"
+            android:layout_gravity="top|center_horizontal"
+            android:src="@drawable/vector_ic_crown"
+            android:scaleType="fitXY"
+            android:visibility="invisible"
+            tools:visibility = "visible"/>
+
+<!--        皇冠上的数字 1-->
+
+        <TextView
+            android:id="@+id/tv_num_on_crown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:fontFamily="@font/font_num"
+            android:translationY="@dimen/dp_12"
+            android:layout_gravity="top|center_horizontal"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            />
+
+
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_level_name"

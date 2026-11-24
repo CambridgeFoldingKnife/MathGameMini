@@ -1,5 +1,6 @@
 package com.drojian.mathgamemini
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -179,11 +180,15 @@ class LevelActivity : BaseActivity (){
                 heartText.text = getString(R.string.heart_format,heartCount)
             }
             Toast.makeText(this,"答错了，请再试一次", Toast.LENGTH_SHORT).show()
+            answer = ""
+            updateAnswerView()
         }else{//第二次错
             wrongTimes =2
             showingCorrect =true
             //弹正确答案
             showCorrectAnswerDialog()
+            answer = ""
+            updateAnswerView()
         }
     }
 
@@ -205,8 +210,10 @@ class LevelActivity : BaseActivity (){
 /*进入下一题
 * */
     private fun goNextQuestion() {
-        if (cunrrentQusetions>=totalQuestions){
-            //showLevelCompleteDialog() // 结果页下一步接 弹窗占位
+        if (cunrrentQusetions>=totalQuestions){//这 5 道题都做完了 下一关
+            //保存当前的关卡数
+            savePassedLevel()
+
             val intent = Intent(this, ResultActivity::class.java) // 创建跳转
             intent.putExtra("level_id", levelId) // 把当前关卡传过去
             startActivity(intent) // 打开结果页
@@ -220,6 +227,20 @@ class LevelActivity : BaseActivity (){
     cunrrentQusetions+=1
     newQuestions()
     }
+
+/*通一小关后保存当前关卡数
+* */
+private fun savePassedLevel(){
+    val  nextLevelId = levelId + 1
+    val sp = getSharedPreferences("math_game", Context.MODE_PRIVATE)
+    val nowLevel = sp.getInt("passed_level", 1)//取一下，现在干到第几关了
+    //更新一下已经通过的关卡数，避免我连着干到4关 然后其实一直是第二关在无限读档
+    if(nextLevelId>nowLevel){
+            sp.edit().putInt("passed_level",nextLevelId).apply()
+    }
+
+}
+
 
     /*展示没有红心了的弹窗
  * */
@@ -236,21 +257,6 @@ class LevelActivity : BaseActivity (){
 
         alertDialog.show()
     }
-
-    // 本关完成临时弹窗
-    private fun showLevelCompleteDialog() {
-        val alertDialog = AlertDialog.Builder(this) // 创建弹窗
-            .setTitle("本关完成") // 标题
-            .setMessage("点击继续返回首页") // 内容
-            .setCancelable(false) // 不能点外面关闭
-            .setPositiveButton("继续") { dialog, which -> // 继续按钮
-                finish() // 先关闭答题页
-            }
-            .create() // 创建弹窗对象
-
-        alertDialog.show() // 显示弹窗
-    }
-
 
 
     //绑定数字--拼到答案后面

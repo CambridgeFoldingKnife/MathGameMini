@@ -22,7 +22,7 @@ class MainActivity : BaseActivity(), LevelAdapter.OnLevelClick {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        设置顶部的标题栏和系统状态栏颜色统一
+
         applySystemBarPadding(
             findViewById<View>(R.id.top_space),
             findViewById<View>(R.id.bottom_space)
@@ -35,18 +35,6 @@ class MainActivity : BaseActivity(), LevelAdapter.OnLevelClick {
         val achieve = findViewById<FrameLayout>(R.id.achieve)
         val setting = findViewById<FrameLayout>(R.id.setting)
 
-        //1、=========读取本地进度：关卡数、爱心数==========
-        //直接读取，没有的话就设置1和5
-        val sp = getSharedPreferences("math_game", Context.MODE_PRIVATE)
-        val openLevel = sp.getInt("passed_level", 1)
-        val hearts = sp.getInt("hearts", 5)
-
-
-        //设置皇冠数和爱心数  皇冠与通关数有关系：crownnums  = (passed_level-1)*1
-        crownText.text= (openLevel-1).toString()
-        heartText.text = hearts.toString()
-
-        setupLevelList()
 
         //======底部按钮栏目跳转 其他界面=======
         //TODO(跳转其他页面)
@@ -63,6 +51,9 @@ class MainActivity : BaseActivity(), LevelAdapter.OnLevelClick {
         }
 
     }
+/*
+
+* */
     private fun setupLevelList(){
         val levelList = ArrayList<Level>()
         levelList.add(Level(1,getString(R.string.level_add_1)))
@@ -76,15 +67,38 @@ class MainActivity : BaseActivity(), LevelAdapter.OnLevelClick {
         recycler.adapter = LevelAdapter(levelList,openLevel,this)
     }
 
+
     override fun onLevelClick(level: Level) {
         if(level.id > openLevel){
             Toast.makeText(this,R.string.level_locked_tip, Toast.LENGTH_SHORT).show()
             return
         }
-        //如果解锁之后跳转关卡页
+        //如果是已经解锁的 跳转关卡页
         val intent = Intent(this, LevelActivity::class.java)
         intent.putExtra("level_id", level.id)
         startActivity(intent)
+    }
+
+
+/*每次回到首页就执行
+* */
+    override fun onResume() {
+        super.onResume()
+        refreshHomeProgress()
+
+    }
+    //读取进度刷新首页
+    /*设计皇冠数、记录通关数、
+    * */
+    private fun  refreshHomeProgress(){
+        val sp = getSharedPreferences("math_game", Context.MODE_PRIVATE)
+        openLevel = sp.getInt("passed_level",1)
+        var hearts = sp.getInt("hearts",5)
+
+        crownText.text = (openLevel-1).toString()
+        heartText.text = hearts.toString()
+         //刷新一下关卡页面的 状态，变绿
+        setupLevelList()
 
     }
 

@@ -3,6 +3,7 @@ package com.drojian.mathgamemini
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -15,6 +16,10 @@ class LevelAdapter (
     class LevelViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val numberText: TextView = itemView.findViewById(R.id.tv_level_num)
         val nameText : TextView = itemView.findViewById(R.id.tv_level_name)
+
+        //通关后的皇冠图案。
+        val corwnImage: ImageView = itemView.findViewById(R.id.iv_level_crown)
+        val numOnCorwn: TextView = itemView.findViewById(R.id.tv_num_on_crown)
     }
 
 
@@ -36,6 +41,7 @@ class LevelAdapter (
        val  level = levelList[position]
         holder.numberText.text = level.id.toString()
         holder.nameText.text = level.name
+
         if(level.id <= openLevel){
             holder.numberText.setBackgroundResource(R.drawable.level_bg_open)
             holder.nameText.setTextColor(context.getColor(R.color.text_dark) )
@@ -43,6 +49,17 @@ class LevelAdapter (
             holder.numberText.setBackgroundResource(R.drawable.level_bg_off)
             holder.nameText.setTextColor(context.getColor(R.color.text_gray))
         }
+
+        //小于说明这一关已经通过，可以加上皇冠。
+        if (level.id<openLevel){
+            holder.corwnImage.visibility = View.VISIBLE
+            holder.numOnCorwn.visibility = View.VISIBLE
+        }else{
+            holder.corwnImage.visibility = View.INVISIBLE
+            holder.numOnCorwn.visibility = View.INVISIBLE
+        }
+
+
         holder.itemView.setOnClickListener {
             listener.onLevelClick(level)
         }
