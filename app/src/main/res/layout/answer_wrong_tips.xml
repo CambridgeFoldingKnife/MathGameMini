@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--只定义一个 textview-->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_wrong_tip"
+    android:fontFamily="@font/font_num"
+    android:gravity="center"
+    android:includeFontPadding="false"
+    android:paddingStart="@dimen/dp_24"
+    android:paddingTop="@dimen/dp_8"
+    android:paddingEnd="@dimen/dp_24"
+    android:paddingBottom="@dimen/dp_8"
+    android:text="唉呀，答错了。"
+    android:textColor="@color/white"
+    android:textSize="@dimen/sp_16"
+    android:textStyle="bold" />

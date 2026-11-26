@@ -38,8 +38,9 @@
     <string name="key_check">检查</string>
     <string name="key_hint">提示</string>
     <string name="key_delete">退格</string>
-<!--关卡完成结果页-->
 
+
+    <string name="review">复习</string>
 
 
 </resources>

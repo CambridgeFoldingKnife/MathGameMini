@@ -19,6 +19,8 @@ class MainActivity : BaseActivity(), LevelAdapter.OnLevelClick {
 
     private  var openLevel = 1
 
+    private var heartCount = 5
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -68,10 +70,15 @@ class MainActivity : BaseActivity(), LevelAdapter.OnLevelClick {
     }
 
 
+    //点击打开关卡
     override fun onLevelClick(level: Level) {
         if(level.id > openLevel){
             Toast.makeText(this,R.string.level_locked_tip, Toast.LENGTH_SHORT).show()
             return
+        }
+        if (heartCount<=0){
+            showNoHeartDialog()
+            return //
         }
         //如果是已经解锁的 跳转关卡页
         val intent = Intent(this, LevelActivity::class.java)
@@ -79,9 +86,23 @@ class MainActivity : BaseActivity(), LevelAdapter.OnLevelClick {
         startActivity(intent)
     }
 
+/*
+* 没有爱心不让进下一关
+ */
+    private fun showNoHeartDialog() {
+        AnswerDialog(this).showNoHeart(
+            onReview = {
+                Toast.makeText(this,"复习页还没做，占个位置", Toast.LENGTH_SHORT).show()
+            },
+            onClose = {
 
-/*每次回到首页就执行
-* */
+            }
+        )
+    }
+
+
+    /*每次回到首页就执行
+    * */
     override fun onResume() {
         super.onResume()
         refreshHomeProgress()
@@ -93,10 +114,10 @@ class MainActivity : BaseActivity(), LevelAdapter.OnLevelClick {
     private fun  refreshHomeProgress(){
         val sp = getSharedPreferences("math_game", Context.MODE_PRIVATE)
         openLevel = sp.getInt("passed_level",1)
-        var hearts = sp.getInt("hearts",5)
+        heartCount = sp.getInt("hearts",5)
 
         crownText.text = (openLevel-1).toString()
-        heartText.text = hearts.toString()
+        heartText.text = heartCount.toString()
          //刷新一下关卡页面的 状态，变绿
         setupLevelList()
 

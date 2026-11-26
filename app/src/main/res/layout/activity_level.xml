@@ -350,7 +350,8 @@
 
     </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
+
 <!--    导航栏占位-->
 <View
     android:id="@+id/bottom_space"

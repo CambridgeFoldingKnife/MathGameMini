@@ -16,5 +16,10 @@
     <color name="level_gray">#FFDDE1E6</color>
 
     <color name="answer_blue">#ff0961FF</color>
+    <color name="answer_wrong_tips">#FFC438</color>
+
+    <color name="giveup_level">#ff828C96</color>
+
+
 
 </resources>

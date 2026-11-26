@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<!--    下面的显示区域-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/bg_dialog_round"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/dp_24"
+        android:paddingTop="@dimen/dp_32"
+        android:paddingEnd="@dimen/dp_24"
+        android:paddingBottom="@dimen/dp_24">
+
+        <!--    弹窗标题-->
+        <TextView
+            android:id="@+id/tv_feedback_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="失误一次，没什么大不了！"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_feedback_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:gravity="center"
+            android:text="别着急，再想一想，你一定可以的。"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold" />
+
+        <!--    答案区-->
+        <TextView
+            android:id="@+id/tv_feedback_answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_16"
+            android:fontFamily="@font/font_num"
+            android:includeFontPadding="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_64"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:text="10"
+            tools:visibility="visible" />
+        <!--    继续按钮-->
+        <TextView
+            android:id="@+id/tv_feedback_ok"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_40"
+            android:background="@drawable/bg_key_ok"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="继续"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_26"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!--趴着狗：写后面 狗浮在白色板子上面-->
+    <ImageView
+        android:id="@+id/iv_feedback_dog"
+        android:layout_width="160dp"
+        android:layout_height="112dp"
+        android:layout_gravity="top|center_horizontal"
+        android:scaleType="fitCenter"
+        android:src="@drawable/pic_anim_bottom_dialog_dog_open_eyes"/>
+
+</FrameLayout>

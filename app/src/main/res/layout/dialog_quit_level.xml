@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/bg_dialog_round"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_24"
+        android:paddingEnd="@dimen/dp_24"
+        android:paddingTop="@dimen/dp_32"
+        android:paddingBottom="@dimen/dp_24"
+        android:layout_marginTop="100dp">
+
+        <TextView
+            android:id="@+id/tv_quit_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="真的要放弃了吗？"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_24"
+            android:fontFamily="@font/font_num"/>
+<!--放弃-->
+        <TextView
+            android:id="@+id/btn_give_up"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_64"
+            android:background="@drawable/bg_quit_gray"
+            android:gravity="center"
+            android:text="放弃"
+            android:layout_marginTop="@dimen/dp_24"
+            android:layout_marginStart="@dimen/dp_32"
+            android:layout_marginEnd="@dimen/dp_32"
+            android:textSize="@dimen/sp_24"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:fontFamily="@font/font_num"
+            android:clickable="true"
+            android:focusable="true"/>
+<!--恢复游戏-->
+        <TextView
+            android:id="@+id/btn_coutinue"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_64"
+            android:background="@drawable/bg_key_ok"
+            android:gravity="center"
+            android:text="恢复游戏"
+            android:layout_marginTop="@dimen/dp_12"
+            android:layout_marginStart="@dimen/dp_32"
+            android:layout_marginEnd="@dimen/dp_32"
+            android:textSize="@dimen/sp_24"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:fontFamily="@font/font_num"
+            android:clickable="true"
+            android:focusable="true"/>
+<!--反馈-->
+        <TextView
+            android:id="@+id/btn_quit_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="反馈"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/dp_24"
+            android:textStyle="bold"
+            android:fontFamily="@font/font_num"
+            android:textSize="@dimen/sp_16"
+            android:clickable="true"
+            android:focusable="true"/>
+
+
+        <View
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_2"
+            android:layout_marginTop="@dimen/dp_2"
+            android:background="@color/text_gray" />
+
+    </LinearLayout>
+
+<ImageView
+    android:id="@+id/iv_quit_dog"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/dp_120"
+    android:src="@drawable/pic_anim_bottom_dialog_dog_open_eyes"
+    android:layout_gravity="top|center_horizontal"
+    android:scaleType="fitCenter"/>
+
+
+
+
+
+
+</FrameLayout>

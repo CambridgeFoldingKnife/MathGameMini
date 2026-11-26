@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- 白色内容区 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/bg_dialog_round"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/dp_24"
+        android:paddingEnd="@dimen/dp_24"
+        android:paddingTop="@dimen/dp_32"
+        android:paddingBottom="@dimen/dp_24">
+
+        <TextView
+            android:id="@+id/tv_no_heart_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/sp_24"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/font_num"
+            android:text="你没有 ❤ 了"
+            tools:text="你没有 ❤ 了"/>
+
+        <TextView
+            android:id="@+id/tv_no_heart_fuxi"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_marginTop="@dimen/dp_8"
+            android:text="@string/review"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold" />
+
+<!--        复习板子-->
+    <LinearLayout
+        android:id="@+id/review_board"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginStart="@dimen/dp_64"
+        android:layout_marginEnd="@dimen/dp_64"
+        android:background="@drawable/bg_review_card"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true">
+
+<!--q-->
+        <ImageView
+            android:id="@+id/iv_review"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:src="@drawable/pic_ic_review"/>
+
+        <TextView
+            android:id="@+id/tv_review_add_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:text="+1 颗爱心"
+            android:textStyle="bold"
+            android:fontFamily="@font/font_num"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/sp_14"/>
+
+        <TextView
+            android:id="@+id/tv_review_click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            android:text="复习"
+            android:fontFamily="@font/font_num"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+
+      <TextView
+          android:id="@+id/tv_thank"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dp_24"
+          android:text="不了，谢谢"
+          android:gravity="center"
+          android:textColor="@color/text_gray"
+          android:textStyle="bold"
+          android:textSize="@dimen/sp_16"
+          android:clickable="true"
+          android:focusable="true"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_no_heart_dog"
+        android:layout_width="160dp"
+        android:layout_height="112dp"
+        android:src="@drawable/pic_anim_bottom_dialog_dog_open_eyes"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitCenter"/>
+
+
+</FrameLayout>
